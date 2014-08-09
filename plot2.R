@@ -15,9 +15,17 @@ if(!file.exists("data")) {
 #                           or Date == "2/2/2007"', 
 #                           sep = ";", header = TRUE, stringsAsFactors = FALSE)
 
-## convert char to time data
+## convert char to date-time data
 powerdata$DateTime <- paste(powerdata$Date, powerdata$Time)
 powerdata$DateTime <- strptime(powerdata$DateTime, "%d/%m/%Y %H:%M:%S", tz = "")
+
+## check/create a dir called "figure"
+if(!file.exists("figure")) {
+    dir.create("figure")
+}
+
+## write a png
+png(filename = './figure/plot2.png', width = 480, height = 480, units = 'px')
 
 ## x-y plot of Date vs. Global Active Power
 with(powerdata, plot(DateTime, Global_active_power,
@@ -25,5 +33,7 @@ with(powerdata, plot(DateTime, Global_active_power,
                      xlab = "",
                      ylab = "Global Active Power (kilowatts)")) 
 
-dev.copy(png, './figure/plot2.png')
+## close all
 dev.off()
+closeAllConnections()
+gc()
