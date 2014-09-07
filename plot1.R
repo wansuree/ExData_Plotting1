@@ -3,7 +3,7 @@ if(!file.exists("data")) {
     dir.create("data")
 }
 
-## download zip file
+## download the zip file
 fileUrl <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
 download.file(fileUrl, destfile = "./data/Dataset.zip", method = "curl")
 unzip("./data/Dataset.zip", exdir = "./data/")
@@ -20,7 +20,7 @@ if(!file.exists("figure")) {
     dir.create("figure")
 }
 
-## write a png
+## write a png 
 png(filename = './figure/plot1.png', width = 480, height = 480, units = 'px')
 
 ## histogram plot of Global Active Power
